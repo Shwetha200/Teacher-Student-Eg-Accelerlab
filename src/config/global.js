@@ -18,6 +18,15 @@ MANDATORY_PARAMS:{
 INVALID_DATA:{
     code:"202",
     message:"is invalid",
-}
+},
+ALREADY_EXISTS:{
+    code:"203",
+    message:"already exists",
 
+},
+ACCESS_DENIED:{
+    code:"204",
+    message:"access-denied",
+
+},
 };

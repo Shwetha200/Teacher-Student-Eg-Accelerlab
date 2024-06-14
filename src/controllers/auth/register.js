@@ -67,6 +67,20 @@ router.post("/", async (req, res) => {  //req= requesting data from frontend sid
             message: "email" + response.message,
           });
     }  //install validator
+
+    const isExistingEmail=await teacherModel.find({   //find()method
+      is_active : constants.STATE.ACTIVE,
+      email:email,
+  });
+    
+console.log(isExistingEmail);
+if (isExistingEmail.length>0){  //.length bcz we took find() which represents in array so to access .length
+  response=RESPONSE.ALREADY_EXISTS;
+        return res.json({  //sending data using json format
+            code: response.code, //fetching data or code and storing to response global variable
+            message: "email" + response.message,
+          });
+}
     
 
 
@@ -81,11 +95,26 @@ router.post("/", async (req, res) => {  //req= requesting data from frontend sid
             message: "phone" + response.message,
           });
     }  //install validator
+
+    const isExistingPhone=await teacherModel.find({   //find()method
+      is_active : constants.STATE.ACTIVE,
+      phone:phone,
+  });
     
+console.log(isExistingPhone);
+
+
+if (isExistingPhone.length>0){  //.length bcz we took find() which represents in array so to access .length
+  response=RESPONSE.ALREADY_EXISTS;
+        return res.json({  //sending data using json format
+            code: response.code, //fetching data or code and storing to response global variable
+            message: "phone" + response.message,
+          });
+}
+
+
 
 //install bcrypt library for password validation
-
-
 const encryptedPassword= await bcrypt.hash(password, constants.HASH_ROUND);  //bcrypt.hash will enable u to add constant file to represen thow much round it should encrypt
 //console.log(encryptedPassword); //u get encrypted pass in terminal we will do use that in database
 
