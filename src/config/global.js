@@ -29,4 +29,9 @@ ACCESS_DENIED:{
     message:"access-denied",
 
 },
+MULTER_ERR:{
+    code:"205",
+    message:"file-size exceeded",    //these errors for front end side, to our side givr in console.log
+
+},
 };
