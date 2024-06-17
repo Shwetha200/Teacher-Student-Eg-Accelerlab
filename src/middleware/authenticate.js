@@ -11,7 +11,7 @@ const authenticate = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, process.env.TOKENKEY);
-    req.user = decoded;
+    req.user = decoded;   //we can use req.user as global used in addStudent.js //we can give any like req.something
     next();
   } catch (err) {
     response = RESPONSE.INVALID_DATA;
