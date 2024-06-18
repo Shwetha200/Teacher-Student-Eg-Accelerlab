@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {  //req= requesting data from frontend sid
 if(data && (await bcrypt.compare(password, data.password))){
     const token=jwt.sign({  // sign() method is in-built method of jsonwebtoken, it validates and convert our given data to token
     id:data._id,
-    name: data.teach_name, //data. = becz fetching from data
+    name: data.teacher_name, //data. = becz fetching from data
     },
     process.env.TOKENKEY
 ); //role = is used distinct separate modules for permission

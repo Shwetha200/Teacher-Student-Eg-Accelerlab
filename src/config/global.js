@@ -34,4 +34,9 @@ MULTER_ERR:{
     message:"file-size exceeded",    //these errors for front end side, to our side givr in console.log
 
 },
+NOT_FOUND:{
+    code:"206",
+    message:"not found",
+
+},
 };
