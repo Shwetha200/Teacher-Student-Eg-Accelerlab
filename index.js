@@ -1,5 +1,5 @@
 import express from "express";
-
+import cors from "cors"; //library  to share the resources
 const app = express();
 const __dirname =path.resolve();//img path
 
@@ -12,7 +12,7 @@ import connectDB from "./src/helper/datatbaseConnection.js";
 import routes from "./routes.js";
 const PORT = process.env.PORT || 3000;
 
-
+app.use(cors()); //to validate api end point 
 app.use(express.json());//while posting getting error so used these 2 lines from stackoverflow
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"public"))); //img path //after public declared in listDtudent.js

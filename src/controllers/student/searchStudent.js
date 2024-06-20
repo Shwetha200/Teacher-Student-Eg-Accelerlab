@@ -6,15 +6,15 @@ import authenticate from "../../middleware/authenticate.js";
 import initStudentModel from "../../model/studentModel.js";
 
 
-router.get("/", authenticate, async (req, res) => { //get method is used to listing 
+router.get("/:search_key", authenticate, async (req, res) => { //get method is used to listing 
     try{
         //for pagination
         // let page=Number(req.query.page)?Number(req.query.page):1;
         // let limit=Number(req.query.limit)?Number(req.query.limit):10; //how many values should come in one page
 
         //for search
-        // let search_key=req.query.search_key
-        // let search_key=req.params.search_key;
+        // let search_key=req.query.search_key  //use query when u need to send multiple values //use filter instead search //search and filter are the same using it differently
+        let search_key=req.params.search_key;
 
         const studentModel=await initStudentModel();
         const teacher_id=req.user.id;
@@ -22,10 +22,10 @@ router.get("/", authenticate, async (req, res) => { //get method is used to list
         let data=await studentModel.find({   //fineOne()method for all not array
             is_active:constants.STATE.ACTIVE,  //whose is_Active=1 thatt should be displayed. but we need only authenticated
             teacher_id:teacher_id,
-            // $or:[
-            // {student_name:{$regex :search_key.$options : "i"}},
-            // {rollno:{$regex :search_key}},
-            // ]
+            $or:[
+            {student_name:{$regex :search_key,$options : "i"}},
+            {rollno:{$regex :search_key}},
+            ]
             // student_name:{$regex :search_key,$options:"i"}, // to retrieve only student_name otherwise or used.//i=  case insensitive
             //rollno:{$regex :search_key},
         });

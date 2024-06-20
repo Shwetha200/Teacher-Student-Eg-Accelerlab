@@ -8,6 +8,7 @@ import getStudentById from "./getStudentByID.js";
 import list from "./list.js";
 import editStudent from "./editStudent.js" ;
 import deleteStudent from "./deleteStudent.js";
+import searchStudent from "./searchStudent.js";
 
 
 
@@ -17,6 +18,8 @@ router.use("/list_student_by_id", getStudentById);
 router.use("/list_1",list);
 router.use("/edit_student",editStudent);//after this hit this end point in postman
 router.use("/delete_student",deleteStudent);
+router.use("/search_student",searchStudent);
+
 
 
 
